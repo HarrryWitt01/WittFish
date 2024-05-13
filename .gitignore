@@ -6,7 +6,8 @@
 
 .d
 
-.vscode
+/.vscode/
 
+.log 
 
 .json
