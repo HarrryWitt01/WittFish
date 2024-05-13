@@ -3,6 +3,8 @@
 #define Engine_H
 
 
+#include "move.h"
+
 class Engine {
 
     public:

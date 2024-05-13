@@ -33,12 +33,19 @@ void Engine::gameLoop() {
     while (state) {
 
         //TODO display current game board to console
-
+        Square to = A1;
+        Square from = A1;
         // wait for user input
         std::cout << "Enter your move: ";
         std::cin >> input;
 
-        std::cout << "Your string was " << input << std::endl;
+        Move move(to, from);
+
+
+        
+
+        std::cout << "Your move is: " << move.sqStr(move.getFrom()) << move.sqStr(move.getTo()) << std::endl;
+        // move.toString();
 
 
     }

@@ -1,9 +1,20 @@
 #include <iostream>
 #include "engine.h"
+#include <cstring>
+
+void help() {
+
+    std::cout << "Placeholder for now" << std::endl;
+
+
+
+
+}
+
+
 
 int main(int argc, char *argv[])
 {
-    // std::cout << "Hello world!" << std::endl;
 
     // read args
 
@@ -11,18 +22,33 @@ int main(int argc, char *argv[])
 
     //TODO decide on args
 
-    // for now, do help flag
 
     // TODO implement UCI
     // for now, just use long algebraic notation
 
     std::cout << "Specify -h for help page" << std::endl;
 
+   
 
-    Engine eng;
+
+    if (argc > 1) {
 
 
-    eng.gameLoop();
+        if (std::strcmp(argv[1], "-h") == 0) {
+            
+            help();
+
+        }
+
+    } else {
+        Engine eng;
+
+
+        eng.gameLoop();
+
+    }
+
+
 
     
 

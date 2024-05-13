@@ -1,0 +1,12 @@
+
+
+# ignore .o, .d, .vscode, .json
+
+.o
+
+.d
+
+.vscode
+
+
+.json
