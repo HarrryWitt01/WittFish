@@ -18,8 +18,8 @@ Engine::Engine() {
 
     // game state is initially true.
     state = 1;
+    
 }
-
 
 Engine::~Engine() {
     state = 0;
@@ -36,6 +36,7 @@ void Engine::gameLoop() {
         Square to = A1;
         Square from = A1;
         // wait for user input
+        board.printBoard();
         std::cout << "Enter your move: ";
         std::cin >> input;
 

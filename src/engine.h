@@ -2,7 +2,7 @@
 #ifndef Engine_H
 #define Engine_H
 
-
+#include "boardRep.h"
 #include "move.h"
 
 class Engine {
@@ -23,7 +23,8 @@ class Engine {
 
 
         int state;
-
+        
+        BoardRep board;
 
 
 };
