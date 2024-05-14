@@ -2,6 +2,39 @@
 #include "engine.h"
 #include <cstring>
 
+
+/*
+
+
+m     m mmmmm mmmmmmmmmmmmmm mmmmmm mmmmm   mmmm  m    m
+#  #  #   #      #      #    #        #    #"   " #    #
+" #"# #   #      #      #    #mmmmm   #    "#mmm  #mmmm#
+ ## ##"   #      #      #    #        #        "# #    #
+ #   #  mm#mm    #      #    #      mm#mm  "mmm#" #    #
+
+
+Author: Harry Witt
+
+*/
+
+
+
+
+/*
+
+TODO
+
+- Enumerate squares
+- Create pre-computed board positions
+- Create pre-computed attack tables
+- See position.h
+
+
+*/
+
+
+
+
 void help() {
 
     std::cout << "Placeholder for now" << std::endl;

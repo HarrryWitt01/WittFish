@@ -12,6 +12,12 @@
 
 #define popBit(board, square) (board &= ~(1ULL << square))
 
+/*
+TODO
+
+- test if this works:
+    #define popBit(board, square) (getBit(board, square) ? bitboard ^= (1ULL << square))
+*/
 
 
 class Position {
