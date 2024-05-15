@@ -2,12 +2,17 @@
 #include <iostream>
 #include "boardRep.h"
 #include "position.h"
+#include "types.h"
+
+
+
+
 
 BoardRep::BoardRep() {
 
 
     // initialize board position
-
+    currPosition.init();
 
 }
 
@@ -18,30 +23,8 @@ BoardRep::~BoardRep() {
 }
 
 
-void BoardRep::printBoard() {
+void BoardRep::printBoard(uint64_t board) {
 
-    // for (int rank = 0; rank < 8; rank++) {
-
-    //     for (int file = 0; file < 8; file++) {
-
-    //         int idx = rank * 8 + file;
-
-    //         // int square = currPosition.getSquare(idx);
-    //         if (currPosition.getSquare(idx)) {
-    //             printf("1 ");
-    //         } else [
-    //             printf("0 ");
-    //         ]
-
-           
-
-        // printf("fuck you");
-    //     }
-
-    //     std::cout<<std::endl;
-
-
-    // }
 
     std::cout<<"  A B C D E F G H"<<std::endl;
 
@@ -58,7 +41,7 @@ void BoardRep::printBoard() {
             // std::cout<<"testing print";
             int currSquare = rank * 8 + file;
 
-            if (currPosition.getSquareFunc(currSquare)) {
+            if (GETBIT(board, currSquare)) {
                 // printf("poopy");
                 std::cout<<1<<" ";
             } else {
@@ -81,11 +64,34 @@ void BoardRep::printBoard() {
 
 
 
-    // if (currPosition.getSquare(0)) {
-    //     printf("AAH");
-    // } else {
-    //     printf("OOH");
-    // }
+
+    std::cout<<"board num: "<<board<<std::endl;
+
+
+
+    
+
+
+}
+
+
+
+
+/*
+Render the game board for the user.
+
+*/
+void BoardRep::renderGame() {
+
+
+    // go through each color and piece individually
+
+
+    // white will be red
+
+    // black will be blue
+    
+
 
 
 }

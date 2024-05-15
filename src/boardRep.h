@@ -13,7 +13,10 @@ class BoardRep {
         ~BoardRep();
 
 
-        void printBoard();
+        void printBoard(uint64_t board);
+
+
+        void renderGame();
 
 
     private:

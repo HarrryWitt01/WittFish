@@ -1,56 +1,56 @@
-#include <iostream>
+// #include <iostream>
 
 
-#include "engine.h"
+// #include "engine.h"
 
 
-/**
- * @brief The primary function of this class is to define
- * the game loop, and interperate user input through
- * CLI. The input will be in standard long algebraic
- * notation.
- * 
- */
+// /**
+//  * @brief The primary function of this class is to define
+//  * the game loop, and interperate user input through
+//  * CLI. The input will be in standard long algebraic
+//  * notation.
+//  * 
+//  */
 
 
 
-Engine::Engine() {
+// Engine::Engine() {
 
-    // game state is initially true.
-    state = 1;
+//     // game state is initially true.
+//     state = 1;
     
-}
+// }
 
-Engine::~Engine() {
-    state = 0;
-}
+// Engine::~Engine() {
+//     state = 0;
+// }
 
 
-void Engine::gameLoop() {
+// void Engine::gameLoop() {
 
-    std::string input;
+//     std::string input;
 
-    while (state) {
+//     while (state) {
 
-        //TODO display current game board to console
-        Square to = A1;
-        Square from = A1;
-        // wait for user input
-        board.printBoard();
-        std::cout << "Enter your move: ";
-        std::cin >> input;
+//         //TODO display current game board to console
+//         Square to = A1;
+//         Square from = A1;
+//         // wait for user input
+//         board.printBoard();
+//         std::cout << "Enter your move: ";
+//         std::cin >> input;
 
-        Move move(to, from);
+//         Move move(to, from);
 
 
         
 
-        std::cout << "Your move is: " << move.sqStr(move.getFrom()) << move.sqStr(move.getTo()) << std::endl;
-        // move.toString();
+//         std::cout << "Your move is: " << move.sqStr(move.getFrom()) << move.sqStr(move.getTo()) << std::endl;
+//         // move.toString();
 
 
-    }
-}
+//     }
+// }
 
 
 

@@ -6,11 +6,11 @@
 #include <cstdint>
 
 
-#define getBit(board, square) (board & (1ULL << square))
+// #define getBit(board, square) (board & (1ULL << square))
 
-#define setBit(board, square) (board |= (1ULL << square))
+// #define setBit(board, square) (board |= (1ULL << square))
 
-#define popBit(board, square) (board &= ~(1ULL << square))
+// #define popBit(board, square) (board &= ~(1ULL << square))
 
 /*
 TODO
@@ -32,11 +32,13 @@ class Position {
 
         int getColor();
 
-        int getSquareFunc(int index);
+        int getSquareFunc(uint64_t board, int index);
 
         void setBitFunc(int index);
 
         int popBitFunc(int index);
+
+        void init();
 
 
     private:

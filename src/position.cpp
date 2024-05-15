@@ -1,23 +1,23 @@
 
 #include "position.h"
-
+#include "types.h"
 
 
 
 Position::Position() {
 
     // initially white
-    colorToMove = 1;
+    colorToMove = WHITE;
 
-    allPieces = 10;
+    allPieces = 18446462598732840960;
 
-    whitePieces = 0;
+    whitePieces = 18446462598732840960;
 
-    blackPieces = 0;
+    blackPieces = 65535;
 
-    whitePawns = 0;
+    whitePawns = 71776119061217280;
 
-    blackPawns = 0;
+    blackPawns = 65280;
 
 }
 
@@ -27,17 +27,25 @@ int Position::getColor() {
     return colorToMove;
 }
 
-int Position::getSquareFunc(int index) {
+int Position::getSquareFunc(uint64_t board, int index) {
 
-    return getBit(allPieces, index);
+    return GETBIT(board, index);
 }
 
 void Position::setBitFunc(int index) {
-    setBit(allPieces, index);
+    SETBIT(allPieces, index);
 }
 
 int Position::popBitFunc(int index) {
-    return popBit(allPieces, index);
+    return POPBIT(allPieces, index);
+}
+
+
+/*
+Initialize board position to normal starting arrangement.
+*/
+void Position::init() {
+    
 }
 
 
