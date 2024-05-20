@@ -76,6 +76,75 @@ void BoardRep::printBoard(uint64_t board) {
 
 
 
+uint64_t BoardRep::generatePawnMoves(int color) {
+
+    // for now, don't worry about enemy pieces
+    // should just be a shift by 8 
+
+    if (color == WHITE) {
+        // generate white pawn moves
+
+        return currPosition.whitePawns >> 8;
+
+    } else {
+        // generate black pawn moves
+        return currPosition.blackPawns << 8;
+    }
+
+
+}
+
+
+/*
+Generate and return the East attacks for all white pawns
+set-wise.
+*/
+uint64_t BoardRep::whitePawnEastAttacks() {
+
+
+
+
+    return (currPosition.whitePawns >> 7) & NOT_A_FILE;
+}
+
+/*
+Generate and return the West attacks for all white pawns
+set-wise.
+*/
+uint64_t BoardRep::whitePawnWestAttacks() {
+
+
+
+
+    return (currPosition.whitePawns >> 9) & NOT_H_FILE;
+}
+
+
+/*
+Generate and return the East attacks for all white pawns
+set-wise.
+*/
+uint64_t BoardRep::blackPawnEastAttacks() {
+
+
+
+
+    return (currPosition.blackPawns << 9) & NOT_A_FILE;
+}
+
+
+/*
+Generate and return the West attacks for all white pawns
+set-wise.
+*/
+uint64_t BoardRep::blackPawnWestAttacks() {
+
+
+
+
+    return (currPosition.blackPawns << 7) & NOT_H_FILE;
+}
+
 
 /*
 Render the game board for the user.

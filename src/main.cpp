@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstring>
 // #include "engine.h"
+#include "boardRep.h"
 #include "types.h"
 
 
@@ -51,6 +52,9 @@ void help() {
 int main(int argc, char *argv[])
 {
 
+    (void) argc;
+    (void) argv;
+
     // read args
 
     // what args do i want tho?
@@ -94,79 +98,54 @@ int main(int argc, char *argv[])
 
 
     
-    std::cout<<static_cast<int>(Square::a2)<<std::endl;
+    // std::cout<<static_cast<int>(Square::a2)<<std::endl;
 
-    std::cout<<static_cast<int>(Square::h2)<<std::endl;
+    // std::cout<<static_cast<int>(Square::h2)<<std::endl;
 
-    uint64_t board = 0;
-
-
-    int currSquare = static_cast<int>(Square::a8);
-
-    while (currSquare <= static_cast<int>(Square::h7)) {
-
-        SETBIT(board, currSquare);
-
-        currSquare++;
-
-    }
+    // uint64_t board = 0;
 
 
-    // currSquare = static_cast<int>(Square::a2);
+    // int currSquare = static_cast<int>(Square::a8);
 
-
-    // while (currSquare <= static_cast<int>(Square::h1)) {
-
+    // while (currSquare <= static_cast<int>(Square::h7)) {
 
     //     SETBIT(board, currSquare);
 
     //     currSquare++;
+
     // }
 
 
-    // print the board
+    BoardRep boardRep;
+
+    // std::cout<<boardRep.generatePawnMoves(WHITE);
+    boardRep.printBoard(boardRep.blackPawnWestAttacks());
 
 
-    // std::cout<<"  A B C D E F G H"<<std::endl;
+   
+
+    // uint64_t board = 0ULL;
+
 
     // for (int rank = 0; rank < 8; rank++) {
-
-
+        
     //     for (int file = 0; file < 8; file++) {
-            
 
-    //         if (file == 0) {
-    //             std::cout<<8 - rank<<" ";
-    //         }
+    //         int square = rank * 8 + file;
 
-    //         int currSquare = rank * 8 + file;
+    //         if (file != 7) {
 
-    //         if (GETBIT(board, currSquare)) {
-    //             std::cout<<1<<" ";
-    //         } else {
-    //             std::cout<<0<<" ";
-    //         }
+    //             SETBIT(board, square);
+    //         } 
 
-            
 
     //     }
 
 
-    //     std::cout<<8 - rank;
-
-    //     std::cout<<std::endl;
-
-
     // }
 
-    // std::cout<<"  A B C D E F G H"<<std::endl;
 
-
-
-
-    // std::cout<<"board num: "<<board<<std::endl;
-
-
+    // boardRep.printBoard(board);
 
 
 
