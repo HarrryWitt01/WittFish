@@ -94,56 +94,167 @@ uint64_t BoardRep::generatePawnMoves(int color) {
 
 }
 
-
 /*
-Generate and return the East attacks for all white pawns
-set-wise.
+Generate legal moves for color's king.
+
+DISCLAIMER: this will currently generate psuedo-legal moves.
+
+TODO incorporate checks
+
 */
-uint64_t BoardRep::whitePawnEastAttacks() {
+uint64_t BoardRep::generateKingMoves(int color) {
+
+    if (color == WHITE) {
+
+        return 0;
+    } else {
+        return 0;
+    }
 
 
-
-
-    return (currPosition.whitePawns >> 7) & NOT_A_FILE;
-}
-
-/*
-Generate and return the West attacks for all white pawns
-set-wise.
-*/
-uint64_t BoardRep::whitePawnWestAttacks() {
-
-
-
-
-    return (currPosition.whitePawns >> 9) & NOT_H_FILE;
 }
 
 
-/*
-Generate and return the East attacks for all white pawns
-set-wise.
-*/
-uint64_t BoardRep::blackPawnEastAttacks() {
+// /*
+// Generate and return the East attacks for all white pawns
+// set-wise.
+// */
+// uint64_t BoardRep::whitePawnEastAttacks() {
 
 
 
 
-    return (currPosition.blackPawns << 9) & NOT_A_FILE;
+//     return (currPosition.whitePawns >> 7) & NOT_A_FILE;
+// }
+
+// /*
+// Generate and return the West attacks for all white pawns
+// set-wise.
+// */
+// uint64_t BoardRep::whitePawnWestAttacks() {
+
+
+
+
+//     return (currPosition.whitePawns >> 9) & NOT_H_FILE;
+// }
+
+
+// /*
+// Generate and return the East attacks for all white pawns
+// set-wise.
+// */
+// uint64_t BoardRep::blackPawnEastAttacks() {
+
+
+
+
+//     return (currPosition.blackPawns << 9) & NOT_A_FILE;
+// }
+
+
+// /*
+// Generate and return the West attacks for all white pawns
+// set-wise.
+// */
+// uint64_t BoardRep::blackPawnWestAttacks() {
+
+
+
+
+//     return (currPosition.blackPawns << 7) & NOT_H_FILE;
+// }
+
+
+void BoardRep::maskPawnAttacks(int color, int square) {
+
+    uint64_t board = 0ULL;
+
+    uint64_t attacks = 0ULL;
+
+    SETBIT(board, square);
+
+
+    if (color == WHITE) {
+        
+        attacks |= (board >> 9) & NOT_H_FILE;
+        attacks |= (board >> 7) & NOT_A_FILE;
+
+
+
+    } else {
+
+        attacks |= (board << 9) & NOT_A_FILE;
+        attacks |= (board << 7) & NOT_H_FILE;
+
+
+    }
+
+    pawnAttacks[color][square] = attacks;
+
+
 }
 
 
-/*
-Generate and return the West attacks for all white pawns
-set-wise.
-*/
-uint64_t BoardRep::blackPawnWestAttacks() {
-
-
-
-
-    return (currPosition.blackPawns << 7) & NOT_H_FILE;
+void BoardRep::maskKnightAttacks(int color, int square) {
+    // TODO
 }
+void BoardRep::maskKingAttacks(int color, int square) {
+    // TODO
+}
+
+void BoardRep::initAttackTables() {
+
+    
+    for (int i = 0; i < 64; i++) {
+
+        // generate pawn attacks
+        maskPawnAttacks(WHITE, i);
+        maskPawnAttacks(BLACK, i);
+
+
+        // generate knight attacks
+        maskKnightAttacks(WHITE, i);
+        maskKingAttacks(BLACK, i);
+
+    }
+
+}
+
+
+
+
+void BoardRep::printPawnAttackTable() {
+
+    std::cout<< "------------ WHITE PAWN ATTACKS ----------------"<<std::endl;
+
+    // square 0 is A8
+
+    
+
+    for (int i = 0; i < 64; i++) {
+        std::cout<< "square: "<< i << std::endl;
+
+        printBoard(pawnAttacks[WHITE][i]);
+
+    }
+
+    printf("\n\n");
+
+    std::cout<< "------------ BLACK PAWN ATTACKS ----------------"<<std::endl;
+
+
+    for (int i = 0; i < 64; i++) {
+
+        std::cout<< "square: "<< i << std::endl;
+
+        printBoard(pawnAttacks[BLACK][i]);
+    }
+}
+
+
+
+
 
 
 /*

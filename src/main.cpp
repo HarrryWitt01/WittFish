@@ -118,34 +118,11 @@ int main(int argc, char *argv[])
 
     BoardRep boardRep;
 
-    // std::cout<<boardRep.generatePawnMoves(WHITE);
-    boardRep.printBoard(boardRep.blackPawnWestAttacks());
 
+    boardRep.initAttackTables();
 
-   
+    boardRep.printPawnAttackTable();
 
-    // uint64_t board = 0ULL;
-
-
-    // for (int rank = 0; rank < 8; rank++) {
-        
-    //     for (int file = 0; file < 8; file++) {
-
-    //         int square = rank * 8 + file;
-
-    //         if (file != 7) {
-
-    //             SETBIT(board, square);
-    //         } 
-
-
-    //     }
-
-
-    // }
-
-
-    // boardRep.printBoard(board);
 
 
 

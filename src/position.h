@@ -25,6 +25,7 @@ class Position {
 
     public:
 
+        // class methods
 
         Position();
 
@@ -41,6 +42,8 @@ class Position {
         void init();
 
 
+        
+
         int colorToMove;
 
         uint64_t allPieces;
@@ -52,6 +55,11 @@ class Position {
         uint64_t whitePawns;
 
         uint64_t blackPawns;
+
+        uint64_t blackKing;
+
+        uint64_t whiteKing;
+
     private:
 
 
