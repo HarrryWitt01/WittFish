@@ -119,10 +119,12 @@ int main(int argc, char *argv[])
     BoardRep boardRep;
 
 
-    boardRep.initAttackTables();
+    // boardRep.initAttackTables();
 
-    boardRep.printPawnAttackTable();
+    // boardRep.printPawnAttackTable();
 
+
+    boardRep.maskKnightAttacks(35);
 
 
 

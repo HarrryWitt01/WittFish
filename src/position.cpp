@@ -9,15 +9,15 @@ Position::Position() {
     // initially white
     colorToMove = WHITE;
 
-    allPieces = 18446462598732840960;
+    allPieces = 18446462598732840960ULL;
 
-    whitePieces = 18446462598732840960;
+    whitePieces = 18446462598732840960ULL;
 
-    blackPieces = 65535;
+    blackPieces = 65535ULL;
 
-    whitePawns = 71776119061217280;
+    whitePawns = 71776119061217280ULL;
 
-    blackPawns = 65280;
+    blackPawns = 65280ULL;
 
 }
 

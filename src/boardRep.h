@@ -31,9 +31,9 @@ class BoardRep {
 
         void maskPawnAttacks(int color, int square);
 
-        void maskKnightAttacks(int color, int square);
+        void maskKnightAttacks(int square);
 
-        void maskKingAttacks(int color, int square);
+        void maskKingAttacks(int square);
 
         void initAttackTables();
 
@@ -41,8 +41,8 @@ class BoardRep {
         // pre-calculated attack tables
 
         uint64_t pawnAttacks[2][64];
-        uint64_t knightAttacks[2][64];
-        uint64_t kingAttacks[2][64];
+        uint64_t knightAttacks[64];
+        uint64_t kingAttacks[64];
 
 
 
@@ -57,9 +57,9 @@ class BoardRep {
 
         Position currPosition;
 
-        const uint64_t NOT_A_FILE = 18374403900871474942;
+        const uint64_t NOT_A_FILE = 18374403900871474942ULL;
 
-        const uint64_t NOT_H_FILE = 9187201950435737471;
+        const uint64_t NOT_H_FILE = 9187201950435737471ULL;
 
 
 };

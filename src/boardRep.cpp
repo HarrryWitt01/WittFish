@@ -196,11 +196,60 @@ void BoardRep::maskPawnAttacks(int color, int square) {
 }
 
 
-void BoardRep::maskKnightAttacks(int color, int square) {
-    // TODO
+void BoardRep::maskKnightAttacks(int square) {
+    // 
+    uint64_t board = 0ULL;
+
+    uint64_t attacks = 0ULL;
+
+    SETBIT(board, square);
+
+    int rank = square / 8;
+    int file = square % 8;
+    
+
+    
+    if (!(rank > 5 || file == 7)) {
+        attacks |= board << 17;
+    }
+
+
+    if (!(rank > 5 || file == 0)) {
+        attacks |= board << 15;
+    }
+
+    if (!(rank == 7 || file > 5)) {
+        attacks |= board << 10;
+    }
+
+    if (!(rank == 7 || file < 2)) {
+        attacks |= board << 6;
+    }
+
+    if (!(rank == 0 || file > 5)) {
+        attacks |= board >> 6;
+    }
+
+    if (!(rank == 0 || file < 2)) {
+        attacks|= board >> 10;
+    }
+
+    if (!(rank < 2 || file == 7)) {
+        attacks |= board >> 15;
+    }
+
+    if (!(rank < 2 || file == 0)) {
+        attacks |= board >> 17;
+    }
+
+  
+
+    knightAttacks[square] = attacks;
+
 }
-void BoardRep::maskKingAttacks(int color, int square) {
+void BoardRep::maskKingAttacks(int square) {
     // TODO
+    (void) square;
 }
 
 void BoardRep::initAttackTables() {
@@ -214,8 +263,10 @@ void BoardRep::initAttackTables() {
 
 
         // generate knight attacks
-        maskKnightAttacks(WHITE, i);
-        maskKingAttacks(BLACK, i);
+        maskKnightAttacks(i);
+
+        // generate king attacks
+        maskKingAttacks(i);
 
     }
 
