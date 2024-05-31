@@ -18,7 +18,7 @@ class BoardRep {
 
         uint64_t generatePawnMoves(int color);
 
-        uint64_t generateKingMoves(int color);
+        // uint64_t generateKingMoves(int color);
 
 
         // uint64_t whitePawnEastAttacks();

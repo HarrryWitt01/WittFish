@@ -76,6 +76,25 @@ void BoardRep::printBoard(uint64_t board) {
 
 
 
+/*
+
+TODO change the below function
+
+I don't like generating all pawn moves at once and I don't think
+I should directly mutate currPosition like that.
+
+*/
+
+
+/*
+Generates normal forward moves for all pawns of a certain color.
+
+Input:
+color - White or black
+
+Output:
+None
+*/
 uint64_t BoardRep::generatePawnMoves(int color) {
 
     // for now, don't worry about enemy pieces
@@ -94,78 +113,26 @@ uint64_t BoardRep::generatePawnMoves(int color) {
 
 }
 
+
+
+
 /*
-Generate legal moves for color's king.
+Generate and store a board making up all possible PSUEDO-LEGAL attacks by the
+pawn of color color on square square. 
 
-DISCLAIMER: this will currently generate psuedo-legal moves.
+**Note: this does not cover check/checkmate or special moves like en
+passant**
 
-TODO incorporate checks
+Input:
+
+color - 0 for black, 1 for white
+square - the location of the pawn
+
+Output:
+None.
+
 
 */
-uint64_t BoardRep::generateKingMoves(int color) {
-
-    if (color == WHITE) {
-
-        return 0;
-    } else {
-        return 0;
-    }
-
-
-}
-
-
-// /*
-// Generate and return the East attacks for all white pawns
-// set-wise.
-// */
-// uint64_t BoardRep::whitePawnEastAttacks() {
-
-
-
-
-//     return (currPosition.whitePawns >> 7) & NOT_A_FILE;
-// }
-
-// /*
-// Generate and return the West attacks for all white pawns
-// set-wise.
-// */
-// uint64_t BoardRep::whitePawnWestAttacks() {
-
-
-
-
-//     return (currPosition.whitePawns >> 9) & NOT_H_FILE;
-// }
-
-
-// /*
-// Generate and return the East attacks for all white pawns
-// set-wise.
-// */
-// uint64_t BoardRep::blackPawnEastAttacks() {
-
-
-
-
-//     return (currPosition.blackPawns << 9) & NOT_A_FILE;
-// }
-
-
-// /*
-// Generate and return the West attacks for all white pawns
-// set-wise.
-// */
-// uint64_t BoardRep::blackPawnWestAttacks() {
-
-
-
-
-//     return (currPosition.blackPawns << 7) & NOT_H_FILE;
-// }
-
-
 void BoardRep::maskPawnAttacks(int color, int square) {
 
     uint64_t board = 0ULL;
@@ -196,6 +163,22 @@ void BoardRep::maskPawnAttacks(int color, int square) {
 }
 
 
+
+/*
+Generate and store a board making up all possible PSUEDO-LEGAL attacks by the
+knight on the specified square.
+
+**Note: this does not cover check/checkmate**
+
+Input:
+
+square - the location of the knight
+
+Output:
+None.
+
+
+*/
 void BoardRep::maskKnightAttacks(int square) {
     // 
     uint64_t board = 0ULL;
@@ -247,11 +230,72 @@ void BoardRep::maskKnightAttacks(int square) {
     knightAttacks[square] = attacks;
 
 }
+
+
+/*
+Generate and store a board making up all possible PSUEDO-LEGAL attacks by the
+king on the specified square.
+
+**Note: this does not cover check/checkmate**
+
+Input:
+
+square - the location of the knight
+
+Output:
+None.
+
+
+*/
 void BoardRep::maskKingAttacks(int square) {
     // TODO
-    (void) square;
+
+    uint64_t board = 0ULL;
+
+    uint64_t attacks = 0ULL;
+
+    SETBIT(board, square);
+
+    int rank = square / 8;
+    int file = square % 8;
+
+    (void) rank;
+
+    // king can move omni-directional one square at a time
+    // right
+    if (file != 7) attacks |= board << 1;
+    // left
+    if (file != 0) attacks |= board >> 1;
+    // up
+    if (rank != 0) attacks |= board >> 8;
+    //down
+    if (rank != 7) attacks |= board << 8;
+    // up left
+    if (file != 0 && rank != 0) attacks |= board >> 9;
+    // up right
+    if (file != 7 && rank != 0) attacks |= board >> 7;
+    // down left
+    if (file != 0 && rank != 7) attacks |= board << 7;
+    // down right
+    if (file != 7 && rank != 7) attacks |= board << 9;
+
+
+
+    kingAttacks[square] = attacks;
+
+
 }
 
+/*
+Calculate attack vectors for all leaping pieces (pawns,
+knights, and kings) for each square on the board.
+
+Input:
+None
+
+Output:
+None
+*/
 void BoardRep::initAttackTables() {
 
     
