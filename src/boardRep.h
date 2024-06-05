@@ -16,18 +16,9 @@ class BoardRep {
 
         void printBoard(uint64_t board);
 
-        uint64_t generatePawnMoves(int color);
+        
 
-        // uint64_t generateKingMoves(int color);
-
-
-        // uint64_t whitePawnEastAttacks();
-
-        // uint64_t whitePawnWestAttacks();
-
-        // uint64_t blackPawnEastAttacks();
-
-        // uint64_t blackPawnWestAttacks();
+        void maskPawnMoves(int color, int square);
 
         void maskPawnAttacks(int color, int square);
 
@@ -41,6 +32,9 @@ class BoardRep {
         // pre-calculated attack tables
 
         uint64_t pawnAttacks[2][64];
+        uint64_t pawnMoves[2][64];
+
+
         uint64_t knightAttacks[64];
         uint64_t kingAttacks[64];
 

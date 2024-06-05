@@ -77,40 +77,48 @@ void BoardRep::printBoard(uint64_t board) {
 
 
 /*
-
-TODO change the below function
-
-I don't like generating all pawn moves at once and I don't think
-I should directly mutate currPosition like that.
-
-*/
-
-
-/*
-Generates normal forward moves for all pawns of a certain color.
+Generate non-attacking moves for a pawn and store them.
 
 Input:
 color - White or black
+square - location of the pawn
 
 Output:
 None
 */
-uint64_t BoardRep::generatePawnMoves(int color) {
+void BoardRep::maskPawnMoves(int color, int square) {
 
-    // for now, don't worry about enemy pieces
-    // should just be a shift by 8 
+    uint64_t board = 0ULL;
+
+    uint64_t moves = 0ULL;
+
+    SETBIT(board, square);
+
+    int rank = square / 8;
 
     if (color == WHITE) {
-        // generate white pawn moves
 
-        return currPosition.whitePawns >> 8;
+        if (rank != 0) {
+            
+            moves |= board >> 8;
+
+            // double leap move
+            if (rank == 6) moves |= board >> 16;
+        }
+
 
     } else {
-        // generate black pawn moves
-        return currPosition.blackPawns << 8;
+
+        if (rank != 7) {
+            
+            moves |= board << 8;
+
+            // double leap move
+            if (rank == 6) moves |= board << 16;
+        }
     }
-
-
+    
+    pawnMoves[color][square] = moves;
 }
 
 
@@ -141,25 +149,17 @@ void BoardRep::maskPawnAttacks(int color, int square) {
 
     SETBIT(board, square);
 
-
     if (color == WHITE) {
         
         attacks |= (board >> 9) & NOT_H_FILE;
         attacks |= (board >> 7) & NOT_A_FILE;
-
-
-
     } else {
 
         attacks |= (board << 9) & NOT_A_FILE;
         attacks |= (board << 7) & NOT_H_FILE;
-
-
     }
 
     pawnAttacks[color][square] = attacks;
-
-
 }
 
 
@@ -196,7 +196,6 @@ void BoardRep::maskKnightAttacks(int square) {
         attacks |= board << 17;
     }
 
-
     if (!(rank > 5 || file == 0)) {
         attacks |= board << 15;
     }
@@ -225,10 +224,7 @@ void BoardRep::maskKnightAttacks(int square) {
         attacks |= board >> 17;
     }
 
-  
-
     knightAttacks[square] = attacks;
-
 }
 
 
@@ -282,8 +278,6 @@ void BoardRep::maskKingAttacks(int square) {
 
 
     kingAttacks[square] = attacks;
-
-
 }
 
 /*
@@ -305,15 +299,17 @@ void BoardRep::initAttackTables() {
         maskPawnAttacks(WHITE, i);
         maskPawnAttacks(BLACK, i);
 
+        maskPawnMoves(WHITE, i);
+        maskPawnMoves(BLACK, i);
+
+
 
         // generate knight attacks
         maskKnightAttacks(i);
 
         // generate king attacks
         maskKingAttacks(i);
-
     }
-
 }
 
 

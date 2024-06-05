@@ -27,11 +27,14 @@ Author: Harry Witt
 
 TODO
 
-- Enumerate squares
-- Create pre-computed board positions
-- Create pre-computed attack tables
-- See position.h
-
+- Implement magic bitboards for sliding pieces
+    - generate sliding occupancy mask tables
+    - generate sliding attack tables
+    - implement bit count procedure
+    - implement bit index procedure
+    - find magic numbers to be used for magic bitboards
+    - implement magic bitboard algorithm
+    
 
 */
 
